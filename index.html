@@ -4,39 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
 
-    <!-- stile -->
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!-- js -->
-    <script src="js/script.js" defer></script>
-
-    <!-- fontawesome  -->
+    <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/c88a405b1b.js" crossorigin="anonymous"></script>
 
-    <!-- titolo  -->
-    <title>FontIcons</title>
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- javascript -->
+    <script src="js/script.js" defer></script>
 </head>
 <body>
-    <!-- parte sopra -->
+    <!-- titolo  -->
     <header>
         <h1>FontIcons</h1>
     </header>
-    <!-- select e sottotitolo  -->
-    <section>
+    <!-- sottotitolo  -->
+    <div class="navbar">
         <h3>FILTRA PER TIPO</h3>
-        <!-- opzioni  -->
-        <select name="categorie" id="categorie">
-            <option value="nulla">all</option>
-            <option value="animali">animals</option>
-            <option value="cibo">food</option>
-            <option value="user">user</option>
+        <!-- scelte -->
+        <select class="tipo-card" onchange="cambioCardSelezionate()">
+            <option value="nulla">All</option>
         </select>
-    </section>
-
-    <main class="box-grande">
-
-    </main>
-    
+    </div>
+    <!-- box delle card -->
+    <div class="tutte-le-card"></div>
 </body>
 </html>

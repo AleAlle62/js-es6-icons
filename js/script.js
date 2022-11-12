@@ -1,4 +1,4 @@
-let arrayOggetti = [
+let arrayCardObj = [
 	{
 		name: 'cat',
 		prefix: 'fa-',
@@ -113,27 +113,77 @@ let arrayOggetti = [
 	}
 ];
 
+// dichiarazione variabili 
+let arrayVuotoCards = []; //array vuoto
 
-let container = document.querySelector('.box-grande')
+let tipoCard = document.querySelector(".tipo-card"); //tipo di card
+
+let tutteCard = document.querySelector(".tutte-le-card"); //contenitore di tutte le card
 
 
-//MILESTONE 1&2 'Partendo dalla struttura dati fornita, visualizzare in pagina un box per ogni icona, in cui è presente il nome dell'icona e l'icona stessa.'
-for (let i = 0; i < arrayOggetti.length; i++) {
-    // per vedere se funziona
-    console.log(`numero box :${i} ${arrayOggetti[i].name} ${arrayOggetti[i].prefix} ${arrayOggetti[i].type} ${arrayOggetti[i].family} ${arrayOggetti[i].color}`)
-    //creazione delle card
-    container.innerHTML += (`
-    <div class = card> 
-    <i class="${arrayOggetti[i].prefix}solid ${arrayOggetti[i].prefix}${arrayOggetti[i].name}" style=color:${arrayOggetti[i].color}></i>
-    ${arrayOggetti[i].name}
-    </div>
-    `)    
+//card all'apertura della pagina
+for (let i = 0; i <arrayCardObj.length; i++) {
+	let objCard = arrayCardObj[i];
+	arrayVuotoCards.push(objCard)
+}
+creazioneCarte();
+
+//crezione option in base ai type degli oggetti
+let tipoArray = []; //vaiabile array
+
+for (let i = 0; i < arrayCardObj.length; i++) {
+
+	if (tipoArray.includes (arrayCardObj[i].type) === false) {
+		tipoArray.push (arrayCardObj[i].type)
+	}
 }
 
-//MILESTONE 3 'Aggiungere alla pagina una select in cui le options corrispondono ai vari tipi di icone (animal, vegetable, user). Quando l'utente seleziona un tipo dalla select, visualizzare solamente le icone corrispondenti.'
+for(let i = 0; i < tipoArray.length; i++){
+	tipoCard.innerHTML += `<option value="${tipoArray[i]}">${tipoArray[i]}</option>`
+}
 
 
 
-// funzione per cui SE viene selezionato UN OPZIONE, allora le altre classi diventano invisibili e viceversa
+//creazione delle card
+function creazioneCarte() {
+    tutteCard.innerHTML = '' 
+    for(let i=0; i < arrayVuotoCards.length; i++){ //ciclo per la creazione per ogni i
+        tutteCard.innerHTML += (`
+		<div class = card> 
+		<i class="${arrayCardObj[i].prefix}solid ${arrayCardObj[i].prefix}${arrayCardObj[i].name}" style=color:${arrayCardObj[i].color}></i>
+		${arrayCardObj[i].name}
+		</div>
+		`)    
+    }
+}
+
+
+// funzione per cambiare carte selezionando le option
+function cambioCardSelezionate() {
+
+    arrayVuotoCards = [] //array vuoto
+    let opzioneSelezionata = tipoCard.value //il valore
+	
+    if(tipoCard.value === "nulla"){   //selezione di tutte
+		for (let i = 0; i < arrayCardObj.length; i++) {
+			let objCard = arrayCardObj[i]
+			arrayVuotoCards.push(objCard)
+		}
+		
+    } else if (tipoCard.value === opzioneSelezionata) {  
+		for (let i = 0; i < arrayCardObj.length; i++){
+			let objCard = arrayCardObj[i]
+			if (objCard.type === opzioneSelezionata){
+				arrayVuotoCards.push(objCard)
+            } 
+        }
+    }
+    return creazioneCarte();
+};
+
+
+
+
+
 
 
